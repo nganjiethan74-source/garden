@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gardens - Online gardening boxes for beginners and keen gardeners across Europe, Asia, and New Zealand">
+    <title>Gardens | Grow Your Green Space</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========== CSS STYLES ========== */
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #FF9800;
+            --accent-color: #4CAF50;
+            --text-color: #333;
+            --light-bg: #F9F9F9;
+            --white: #FFFFFF;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        /* Accessibility Classes */
+        .large-text {
+            font-size: 1.25rem;
+        }
+
+        .x-large-text {
+            font-size: 1.5rem;
+        }
+
+        .high-contrast {
+            background-color: #000 !important;
+            color: #FFF !important;
+        }
+
+        .high-contrast a,
+        .high-contrast .nav-link,
+        .high-contrast .btn-outline {
+            color: #FFF !important;
+            border-color: #FFF !important;
+        }
+
+        .inverted-colors {
+            filter: invert(1);
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Skip Link for Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Header & Navigation */
+        .header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #1B5E20;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(46, 125, 50, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: #F57C00;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            overflow: hidden;
+        }
+
+        .hero .container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-family: 'Roboto Slab', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+
+        .hero-text {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #555;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            flex: 1;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.5s;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Featured Boxes */
+        .featured-boxes {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .boxes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .box-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .box-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .box-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+        }
+
+        .box-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .box-card .price {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .box-card ul {
+            list-style: none;
+            margin: 15px 0;
+            flex-grow: 1;
+        }
+
+        .box-card ul li {
+            padding: 5px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .box-card ul li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Activities Preview */
+        .activities-preview {
+            padding: 4rem 0;
+            background-color: var(--white);
+        }
+
+        .activities-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .activity-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--light-bg);
+            border-radius: var(--border-radius);
+            transition: all 0.3s;
+        }
+
+        .activity-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .activity-item i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .activity-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #F1F8E9 0%, #DCEDC8 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 0;
+            background-color: var(--light-bg);
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin: 0 1rem;
+            text-align: center;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 4rem 0;
+            background-color: var(--white);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .error-message {
+            color: #f44336;
+            font-size: 0.875rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #2c3e50;
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-section p {
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-section i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* Accessibility Panel */
+        .accessibility-panel {
+            position: fixed;
+            top: 50%;
+            right: -300px;
+            transform: translateY(-50%);
+            background: var(--white);
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: var(--border-radius);
+            width: 280px;
+            transition: right 0.3s ease-in-out;
+            z-index: 1001;
+            border: 1px solid #e0e0e0;
+        }
+
+        .accessibility-panel.active {
+            right: 20px;
+        }
+
+        .accessibility-panel h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .close-panel {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .close-panel:hover {
+            color: var(--primary-color);
+        }
+
+        .control-group {
+            margin-bottom: 1rem;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .control-group select {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background: var(--white);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        /* Modal for Contact Success */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-content i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .modal-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            .hero .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-text {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1);
+                padding: 2rem 0;
+                gap: 1.5rem;
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .boxes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .accessibility-panel {
+                width: 250px;
+            }
+            
+            .accessibility-panel.active {
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero-title {
+                font-size: 1.75rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .box-card {
+                padding: 1rem;
+            }
+            
+            .activity-item {
+                padding: 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-seedling"></i>
+                    <span>Gardens</span>
+                </a>
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#boxes" class="nav-link">Garden Boxes</a></li>
+                    <li><a href="#activities" class="nav-link">Activities</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="#" class="btn btn-secondary">Subscribe Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Grow Your Green Space with Gardens</h1>
+                    <p class="hero-text">Monthly gardening boxes delivered to your door across Europe, Asia, and New Zealand. Perfect for beginners and experienced gardeners alike. Join our community and discover the joy of gardening!</p>
+                    <div class="hero-buttons">
+                        <a href="#boxes" class="btn btn-primary">Explore Boxes</a>
+                        <a href="#contact" class="btn btn-outline">Get Started</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1598880940080-ff9a29891b85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Beautiful garden with flowers and vegetables">
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Boxes Section -->
+        <section id="boxes" class="featured-boxes">
+            <div class="container">
+                <h2 class="section-title">Our Popular Gardening Boxes</h2>
+                <div class="boxes-grid">
+                    <div class="box-card">
+                        <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Oddbox with wonky vegetables" class="box-image">
+                        <h3>Oddbox</h3>
+                        <div class="price">From €25/week</div>
+                        <p>Weekly deliveries of wonky vegetables rejected by supermarkets, plus vegetable seeds and exclusive blog access.</p>
+                        <ul>
+                            <li>Weekly vegetable deliveries</li>
+                            <li>Seasonal seeds included</li>
+                            <li>Exclusive gardening blog</li>
+                            <li>Perfect for reducing food waste</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="margin-top: auto;">Subscribe Now</a>
+                    </div>
+                    <div class="box-card">
+                        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Flourish box with seeds and tools" class="box-image">
+                        <h3>Flourish</h3>
+                        <div class="price">€99/season</div>
+                        <p>Four seasonal boxes per year with premium seeds, seed trays, watering can, and handmade cruelty-free soap.</p>
+                        <ul>
+                            <li>Four boxes per year</li>
+                            <li>Premium seeds with trays</li>
+                            <li>Metal watering can</li>
+                            <li>Handmade cruelty-free soap</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="margin-top: auto;">Subscribe Now</a>
+                    </div>
+                    <div class="box-card">
+                        <img src="https://images.unsplash.com/photo-1592500911567-1bcd6b8b3a8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cottage box with wildflower seeds" class="box-image">
+                        <h3>Cottage</h3>
+                        <div class="price">€39/month</div>
+                        <p>Monthly boxes with wild flower seeds, educational fact cards, seed markers, and twine for the perfect cottage garden.</p>
+                        <ul>
+                            <li>Monthly themed boxes</li>
+                            <li>Wild flower seeds collection</li>
+                            <li>Educational fact cards</li>
+                            <li>Seed markers and twine</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary" style="margin-top: auto;">Subscribe Now</a>
+                    </div>
+                </div>
+                <div class="text-center" style="margin-top: 3rem;">
+                    <p><strong>Custom boxes available!</strong> Contact us for corporate subscriptions and special gifts.</p>
+                    <a href="#contact" class="btn btn-outline">Request Custom Box</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activities Preview -->
+        <section id="activities" class="activities-preview">
+            <div class="container">
+                <h2 class="section-title">Gardening Activities & Community</h2>
+                <p class="text-center" style="max-width: 800px; margin: 0 auto 3rem auto; color: #555;">
+                    Join our vibrant gardening community with exclusive activities, events, and resources for all skill levels.
+                </p>
+                <div class="activities-list">
+                    <div class="activity-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Monthly Checklist</h3>
+                        <p>Never miss important gardening tasks with our comprehensive monthly guides and reminders.</p>
+                    </div>
+                    <div class="activity-item">
+                        <i class="fas fa-camera"></i>
+                        <h3>Photo Competitions</h3>
+                        <p>Share your garden's progress and win amazing prizes in our monthly photography contests.</p>
+                    </div>
+                    <div class="activity-item">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h3>Online Talks</h3>
+                        <p>Learn from experts with our regular online advice sessions and Q&A events.</p>
+                    </div>
+                    <div class="activity-item">
+                        <i class="fas fa-book"></i>
+                        <h3>Plant Diary</h3>
+                        <p>Track your gardening journey with our digital plant diary and progress notes feature.</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="#contact" class="btn btn-primary">Join Our Community</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <h2 class="section-title">What We Offer</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-leaf fa-3x" style="color: var(--accent-color); margin-bottom: 1rem;"></i>
+                        <h3>Garden Maintenance</h3>
+                        <p>Expert advice and tips for maintaining your garden throughout the seasons.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-temperature-high fa-3x" style="color: var(--accent-color); margin-bottom: 1rem;"></i>
+                        <h3>Greenhouse Tips</h3>
+                        <p>Specialized guidance for greenhouse gardening and optimal plant growth.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-tractor fa-3x" style="color: var(--accent-color); margin-bottom: 1rem;"></i>
+                        <h3>Allotment Jobs</h3>
+                        <p>Monthly task lists and support for community garden and allotment enthusiasts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="text-center" style="max-width: 600px; margin: 0 auto 3rem auto; color: #555;">
+                    Have questions about our boxes or services? Contact us for more information or to arrange custom corporate subscriptions.
+                </p>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                            <div class="error-message" id="nameError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" class="form-control">
+                                <option value="">Select a subject</option>
+                                <option value="subscription">Box Subscription</option>
+                                <option value="custom">Custom Box Inquiry</option>
+                                <option value="corporate">Corporate Subscription</option>
+                                <option value="support">Customer Support</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" class="form-control" placeholder="Tell us about your gardening needs..." required></textarea>
+                            <div class="error-message" id="messageError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="text-center" style="margin-top: 3rem;">
+                    <h3>Contact Information</h3>
+                    <p style="margin: 1rem 0;"><i class="fas fa-envelope"></i> info@gardens.com</p>
+                    <p style="margin: 1rem 0;"><i class="fas fa-phone"></i> +44 1234 567890</p>
+                    <p style="margin: 1rem 0;"><i class="fas fa-map-marker-alt"></i> Serving Europe, Asia & New Zealand</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Gardens</h3>
+                    <p>Bringing gardening joy to beginners and enthusiasts across Europe, Asia, and New Zealand since 2015.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#boxes">Garden Boxes</a></li>
+                        <li><a href="#activities">Activities</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Our Boxes</h4>
+                    <ul>
+                        <li><a href="#boxes">Oddbox</a></li>
+                        <li><a href="#boxes">Flourish</a></li>
+                        <li><a href="#boxes">Cottage</a></li>
+                        <li><a href="#contact">Custom Boxes</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Accessibility</h4>
+                    <p>We're committed to making gardening accessible to everyone. Our website includes features to support diverse needs.</p>
+                    <button id="accessibility-toggle" class="btn btn-small" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3);">
+                        <i class="fas fa-universal-access"></i> Accessibility Options
+                    </button>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Gardens Gardening Boxes. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Accessibility Statement</a></p>
+                <p style="margin-top: 10px; font-size: 0.8rem;">This website is designed for Pearson BTEC International Level 3 Information Technology - Unit 6: Website Development</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Accessibility Panel -->
+    <div id="accessibility-panel" class="accessibility-panel">
+        <h3><i class="fas fa-universal-access"></i> Accessibility Options</h3>
+        <button class="close-panel" aria-label="Close accessibility panel">&times;</button>
+        <div class="accessibility-controls">
+            <div class="control-group">
+                <label for="font-size">Font Size:</label>
+                <select id="font-size">
+                    <option value="normal">Normal</option>
+                    <option value="large">Large (+25%)</option>
+                    <option value="x-large">Extra Large (+50%)</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="contrast">Color Contrast:</label>
+                <select id="contrast">
+                    <option value="normal">Default</option>
+                    <option value="high">High Contrast</option>
+                    <option value="inverted">Inverted Colors</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="animation">Animations:</label>
+                <select id="animation">
+                    <option value="enabled">Enabled</option>
+                    <option value="reduced">Reduced Motion</option>
+                </select>
+            </div>
+            <button id="reset-accessibility" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+                Reset All Settings
+            </button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <i class="fas fa-check-circle"></i>
+            <h3>Message Sent Successfully!</h3>
+            <p>Thank you for contacting Gardens. We'll get back to you within 24 hours.</p>
+            <button id="closeModal" class="btn btn-primary" style="margin-top: 1rem;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // ========== JAVASCRIPT ==========
+        // Mobile Navigation Toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        if (navToggle && navMenu) {
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                const isExpanded = navMenu.classList.contains('active');
+                navToggle.setAttribute('aria-expanded', isExpanded);
+                navToggle.innerHTML = isExpanded ? 
+                    '<i class="fas fa-times"></i>' : 
+                    '<i class="fas fa-bars"></i>';
+            });
+
+            // Close mobile menu when clicking a link
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Update active link
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                });
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Update active nav link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Accessibility Features
+        const accessibilityPanel = document.getElementById('accessibility-panel');
+        const accessibilityToggle = document.getElementById('accessibility-toggle');
+        const closePanel = document.querySelector('.close-panel');
+        const fontSizeSelect = document.getElementById('font-size');
+        const contrastSelect = document.getElementById('contrast');
+        const animationSelect = document.getElementById('animation');
+        const resetButton = document.getElementById('reset-accessibility');
+
+        // Toggle accessibility panel
+        if (accessibilityToggle && accessibilityPanel) {
+            accessibilityToggle.addEventListener('click', () => {
+                accessibilityPanel.classList.toggle('active');
+                accessibilityToggle.setAttribute('aria-expanded', 
+                    accessibilityPanel.classList.contains('active') ? 'true' : 'false'
+                );
+            });
+
+            closePanel.addEventListener('click', () => {
+                accessibilityPanel.classList.remove('active');
+                accessibilityToggle.setAttribute('aria-expanded', 'false');
+            });
+
+            // Close panel when clicking outside
+            document.addEventListener('click', (event) => {
+                if (!accessibilityPanel.contains(event.target) && 
+                    !accessibilityToggle.contains(event.target)) {
+                    accessibilityPanel.classList.remove('active');
+                    accessibilityToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        // Font Size Adjustment
+        if (fontSizeSelect) {
+            fontSizeSelect.addEventListener('change', (e) => {
+                document.body.classList.remove('large-text', 'x-large-text');
+                
+                if (e.target.value === 'large') {
+                    document.body.classList.add('large-text');
+                } else if (e.target.value === 'x-large') {
+                    document.body.classList.add('x-large-text');
+                }
+                
+                // Save preference to localStorage
+                localStorage.setItem('gardens_fontSize', e.target.value);
+            });
+        }
+
+        // Contrast Adjustment
+        if (contrastSelect) {
+            contrastSelect.addEventListener('change', (e) => {
+                document.body.classList.remove('high-contrast', 'inverted-colors');
+                
+                if (e.target.value === 'high') {
+                    document.body.classList.add('high-contrast');
+                } else if (e.target.value === 'inverted') {
+                    document.body.classList.add('inverted-colors');
+                }
+                
+                // Save preference to localStorage
+                localStorage.setItem('gardens_contrast', e.target.value);
+            });
+        }
+
+        // Animation Control
+        if (animationSelect) {
+            animationSelect.addEventListener('change', (e) => {
+                if (e.target.value === 'reduced') {
+                    document.body.style.setProperty('--shadow', '0 2px 3px rgba(0, 0, 0, 0.1)');
+                    document.querySelectorAll('*').forEach(el => {
+                        el.style.animation = 'none';
+                        el.style.transition = 'none';
+                    });
+                } else {
+                    document.body.style.removeProperty('--shadow');
+                    document.querySelectorAll('*').forEach(el => {
+                        el.style.animation = '';
+                        el.style.transition = '';
+                    });
+                }
+                
+                // Save preference to localStorage
+                localStorage.setItem('gardens_animation', e.target.value);
+            });
+        }
+
+        // Reset Accessibility Settings
+        if (resetButton) {
+            resetButton.addEventListener('click', () => {
+                document.body.classList.remove('large-text', 'x-large-text', 'high-contrast', 'inverted-colors');
+                document.body.style.removeProperty('--shadow');
+                
+                if (fontSizeSelect) fontSizeSelect.value = 'normal';
+                if (contrastSelect) contrastSelect.value = 'normal';
+                if (animationSelect) animationSelect.value = 'enabled';
+                
+                // Reset animations
+                document.querySelectorAll('*').forEach(el => {
+                    el.style.animation = '';
+                    el.style.transition = '';
+                });
+                
+                // Clear localStorage
+                localStorage.removeItem('gardens_fontSize');
+                localStorage.removeItem('gardens_contrast');
+                localStorage.removeItem('gardens_animation');
+                
+                // Show confirmation
+                alert('All accessibility settings have been reset to default.');
+            });
+        }
+
+        // Load saved accessibility preferences on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Font size
+            const savedFontSize = localStorage.getItem('gardens_fontSize');
+            if (savedFontSize && fontSizeSelect) {
+                fontSizeSelect.value = savedFontSize;
+                fontSizeSelect.dispatchEvent(new Event('change'));
+            }
+            
+            // Contrast
+            const savedContrast = localStorage.getItem('gardens_contrast');
+            if (savedContrast && contrastSelect) {
+                contrastSelect.value = savedContrast;
+                contrastSelect.dispatchEvent(new Event('change'));
+            }
+            
+            // Animation
+            const savedAnimation = localStorage.getItem('gardens_animation');
+            if (savedAnimation && animationSelect) {
+                animationSelect.value = savedAnimation;
+                animationSelect.dispatchEvent(new Event('change'));
+            }
+            
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+
+        // Form Validation and Submission
+        const contactForm = document.getElementById('contactForm');
+        const successModal = document.getElementById('successModal');
+        const closeModalBtn = document.getElementById('closeModal');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+                
+                // Get error elements
+                const nameError = document.getElementById('nameError');
+                const emailError = document.getElementById('emailError');
+                const messageError = document.getElementById('messageError');
+                
+                // Reset errors
+                nameError.style.display = 'none';
+                emailError.style.display = 'none';
+                messageError.style.display = 'none';
+                
+                let isValid = true;
+                
+                // Validate name
+                if (!name) {
+                    nameError.textContent = 'Please enter your name';
+                    nameError.style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Validate email
+                if (!email) {
+                    emailError.textContent = 'Please enter your email address';
+                    emailError.style.display = 'block';
+                    isValid = false;
+                } else if (!isValidEmail(email)) {
+                    emailError.textContent = 'Please enter a valid email address';
+                    emailError.style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Validate message
+                if (!message) {
+                    messageError.textContent = 'Please enter your message';
+                    messageError.style.display = 'block';
+                    isValid = false;
+                } else if (message.length < 10) {
+                    messageError.textContent = 'Message must be at least 10 characters long';
+                    messageError.style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (isValid) {
+                    // Simulate form submission
+                    console.log('Form submitted:', { name, email, message });
+                    
+                    // Show success modal
+                    successModal.classList.add('active');
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Scroll to top of contact section
+                    document.querySelector('#contact').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        }
+
+        // Close modal
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', () => {
+                successModal.classList.remove('active');
+            });
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target === successModal) {
+                successModal.classList.remove('active');
+            }
+        });
+
+        // Email validation helper function
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Image loading optimization
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                // Add loading="lazy" for better performance
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+                
+                // Add error handling
+                img.addEventListener('error', function() {
+                    this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect width="400" height="300" fill="%23f0f0f0"/><text x="200" y="150" font-family="Arial" font-size="16" text-anchor="middle" fill="%23999">Image failed to load</text></svg>';
+                    this.alt = 'Image failed to load';
+                });
+            });
+        });
+
+        // Add current year to footer
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearElement = document.createElement('span');
+            yearElement.id = 'currentYear';
+            yearElement.textContent = new Date().getFullYear();
+            
+            // Find the copyright text and insert year
+            const copyrightText = document.querySelector('.footer-bottom p');
+            if (copyrightText) {
+                copyrightText.innerHTML = copyrightText.innerHTML.replace('2025', yearElement.textContent);
+            }
+        });
+
+        // Box subscription button handling
+        document.querySelectorAll('.box-card .btn-primary').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const boxName = this.closest('.box-card').querySelector('h3').textContent;
+                
+                // Set the subject in the contact form
+                document.getElementById('subject').value = 'subscription';
+                document.getElementById('message').value = `I'm interested in subscribing to the ${boxName} box. Please send me more information.`;
+                
+                // Scroll to contact form
+                document.querySelector('#contact').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Add hover effect to box cards
+        document.querySelectorAll('.box-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Initialize with first nav link active
+        if (navLinks.length > 0) {
+            navLinks[0].classList.add('active');
+        }
+    </script>
+</body>
+</html>
